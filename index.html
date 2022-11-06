@@ -1,0 +1,41 @@
+<html>
+
+<head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+	<!-- CSS -->
+	<link rel="stylesheet" href="index.css">
+	<!-- Font Awesome CDN -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<!-- Google Fonts -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body> 
+	<header>
+		<h1>Twimba</h1>
+	</header>
+	<main>
+		<div class="tweet-input-area">
+			<img src="images/scrimbalogo.png" class="profile-pic">
+			<textarea placeholder="What's happening?" id="tweet-input"></textarea>
+		</div>
+		<button id="tweet-btn">Tweet</button>
+		<div class="feed" id="feed">
+			<!-- Tweets here!! -->
+		</div>
+	</main>
+	<div class="modal" id="modal">
+		<div class="modal-textarea" id="modal-textarea">
+			<textarea placeholder="Your reply" class="user-reply-box" id="user-reply-box"></textarea>
+		</div>
+		
+		<div class="modal-btn-container">
+			<button class="modal-reply-btn" id="modal-reply-btn">Reply</button>
+			<button class="modal-cancel-btn" id="modal-cancel-btn">Cancel</button>
+		</div>
+	</div>
+	<script src="index.js" type="module"></script>
+</body>
+
+</html>
