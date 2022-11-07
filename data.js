@@ -9,7 +9,7 @@ export const tweetsData = [
         replies: [],
         isLiked: false,
         isRetweeted: false,
-        uuid: '4b161eee-c0f5-4545-9c4b-8562944223ee',
+        uuid: '4b161eee-c0f5-4545-9c4b-8562944223ee'
     },    
     {
         handle: `@Elon ✅`,
@@ -21,29 +21,17 @@ export const tweetsData = [
                   {
                 handle: `@TomCruise ✅`,
                 profilePic: `images/tcruise.png`,
-                tweetText: `Yes! Sign me up! 😎🛩`,
-                likes: 200,
-                retweets: 50,
-                replies: [],
-                isLiked: false,
-                isRetweeted: false,
-                uuid: '948sb4ma-nfok-liko-kelo-1p23l4k5i6nd'
+                tweetText: `Yes! Sign me up! 😎🛩`
             },
                   {
                 handle: `@ChuckNorris ✅`,
                 profilePic: `images/chucknorris.jpeg`,
-                tweetText: `I went last year, and it was as boring as you 😴`,
-                likes: 9999,
-                retweets: 9999,
-                replies: [],
-                isLiked: false,
-                isRetweeted: false,
-                uuid: '0oamd194-kilo-zabr-kaka-m0ss0ayr1yad'
+                tweetText: `I went last year, and it was as boring as you 😴`
             },
         ],
         isLiked: false,
         isRetweeted: false,
-        uuid: '3c23454ee-c0f5-9g9g-9c4b-77835tgs2',
+        uuid: '3c23454ee-c0f5-9g9g-9c4b-77835tgs2'
     },
         {
         handle: `@NoobCoder12`,
@@ -55,28 +43,16 @@ export const tweetsData = [
             {
                 handle: `@StackOverflower ☣️`,
                 profilePic: `images/overflow.png`,
-                tweetText: `No. Obviosuly not. Go get a job in McDonald's.`,
-                likes: 30,
-                retweets: 15,
-                replies: [],
-                isLiked: false,
-                isRetweeted: false,
-                uuid: '0nf0khb1-1a6a-nw1e-3ars-many00k11872'
+                tweetText: `No. Obviosuly not. Go get a job in McDonald's.`
             },
             {
                 handle: `@YummyCoder64`,
                 profilePic: `images/love.png`,
-                tweetText: `You are wonderful just as you are! ❤️`,
-                likes: 1,
-                retweets: 1,
-                replies: [],
-                isLiked: false,
-                isRetweeted: false,
-                uuid: '09596lfi-tyui-qwer-9327-oa9473shmsqu'
+                tweetText: `You are wonderful just as you are! ❤️`
             },
         ],
         isLiked: false,
         isRetweeted: false,
-        uuid: '8hy671sff-c0f5-4545-9c4b-1237gyys45',
+        uuid: '8hy671sff-c0f5-4545-9c4b-1237gyys45'
     },     
 ]

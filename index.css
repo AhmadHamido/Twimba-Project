@@ -59,20 +59,6 @@ textarea{
     line-height: 30px;
 }
 
-.modal-textarea {
-    display: flex;
-}
-
-.user-reply-box {
-    width: 80%;
-    margin: auto;
-    margin-top: 1em;
-    padding: 0.5em;
-    height: 80px;
-    resize: none;
-    
-}
-
 button{
     background-color: #1DA1F2;
     border: none;
@@ -85,12 +71,9 @@ button{
     font-weight: 600;
 }
 
-.modal-reply-btn,
-.modal-cancel-btn {
-    width: 40%;
-    font-weight: 400;
-    margin-top: 1em;
-    margin-left: 0.9em;
+.reply-btn {
+    width: 80%;
+    margin-left: auto;
 }
 
 /* tweet */
@@ -100,6 +83,11 @@ button{
     padding: 1.25em 0 0 0;
     width: 100%;
     margin: 0.9375em 0;
+}
+
+.reply-tweet {
+    display: flex;
+    flex-direction: column;
 }
 
 .tweet-inner{
@@ -161,17 +149,6 @@ button{
     display: none;
 }
 
-.modal {
-    position: fixed;
-    right: 0;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    display: none;
-    height: 200px;
-    width: 300px;
-    border-radius: 5px;
-    box-shadow: 0px 0px 6px 2px #666;
-    background-color: #ffffff;
+.visibility-hidden {
+    visibility: hidden;
 }

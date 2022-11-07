@@ -14,20 +14,13 @@ document.addEventListener('click', function(e){
     else if(e.target.id === 'tweet-btn'){
         handleTweetBtnClick()
     }
-    else if (e.target.id === 'modal-reply-btn') {
-        handleSubmitReplyClick();
-    }
-    else if (e.target.id === 'modal-cancel-btn') {
-        handleCancelReplyClick();
+    else if (e.target.id === 'reply-btn') {
+        handleSubmitReplyClick(e.target.dataset.btnreply);
     }
     else if (e.target.dataset.deletetweet) {
         handleDeleteTweetClick(e.target.dataset.deletetweet);
     }
 })
-
-function handleCancelReplyClick() {
-    document.getElementById('modal').style.display = 'none';
-}
 
 function handleDeleteTweetClick(tweetId) {
     tweetsData.splice(tweetId, 1);
@@ -66,7 +59,6 @@ function handleRetweetClick(tweetId){
 
 function handleReplyClick(replyId){
     document.getElementById(`replies-${replyId}`).classList.toggle('hidden');
-    document.getElementById('modal').style.display = 'block';
 }
 
 function handleTweetBtnClick(){
@@ -90,26 +82,22 @@ function handleTweetBtnClick(){
 
 }
 
-function handleSubmitReplyClick() {
-    const replyInput = document.getElementById('user-reply-box');
-    
-    
-    if(replyInput.value) {
-        tweetsData[0].replies.unshift({
+function handleSubmitReplyClick(tweetId) {
+    const replyInput = document.querySelector(`[data-textareareply="${tweetId}"]`);
+    const targetReplyTweet = tweetsData.filter(function(tweet) {
+        return tweet.uuid === tweetId;
+    })[0];
+    if (replyInput.value) {
+        targetReplyTweet.replies.push({
             handle: `@Scrimba`,
             profilePic: `images/scrimbalogo.png`,
-            likes: 0,
-            retweets: 0,
             tweetText: replyInput.value,
-            replies: [],
-            isLiked: false,
-            isRetweeted: false,
-            uuid: uuidv4()
         });
         render();
+        document.getElementById(`replies-${tweetId}`).classList.toggle('hidden');
         replyInput.value = '';
-        document.getElementById('modal').style.display = 'none';
     }
+    
 }
 
 function getFeedHtml(){
@@ -128,6 +116,14 @@ function getFeedHtml(){
         if (tweet.isRetweeted){
             retweetIconClass = 'retweeted'
         }
+
+        let deleteIconClass = '';
+
+        if(tweet.handle === '@Scrimba'){
+            deleteIconClass = '';
+        } else {
+            deleteIconClass = 'visibility-hidden';
+        }
         
         let repliesHtml = ''
         
@@ -135,84 +131,66 @@ function getFeedHtml(){
             tweet.replies.forEach(function(reply){
                 repliesHtml+=`
 
-<div class="tweet-reply">
-    <div class="tweet-inner">
-        <img src="${reply.profilePic}" class="profile-pic">
-        <div>
-            <p class="handle">${reply.handle}</p>
-            <p class="tweet-text">${reply.tweetText}</p>
-            <div class="reply-details">
-                <span class="tweet-detail">
-                    <i class="fa-regular fa-comment-dots"
-                    data-replyOfReply="${reply.uuid}"
-                    ></i>
-                    ${reply.replies.length}
-                </span>
-                <span class="tweet-detail">
-                    <i class="fa-solid fa-heart ${likeIconClass}"
-                    data-likeOfReply="${reply.uuid}"
-                    ></i>
-                    ${reply.likes}
-                </span>
-                <span class="tweet-detail">
-                    <i class="fa-solid fa-retweet ${retweetIconClass}"
-                    data-retweetOfReply="${reply.uuid}"
-                    ></i>
-                    ${reply.retweets}
-                </span>
-                <span class="tweet-detail">
-                    <i class="fa-solid fa-trash" 
-                    data-deletereply="${reply.uuid}"
-                    ></i>
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
-`
+                <div class="tweet-reply">
+                    <div class="tweet-inner">
+                        <img src="${reply.profilePic}" class="profile-pic">
+                        <div>
+                            <p class="handle">${reply.handle}</p>
+                            <p class="tweet-text">${reply.tweetText}</p>
+                        </div>
+                    </div>
+                </div>
+                `
             })
         }
         
           
         feedHtml += `
-<div class="tweet">
-    <div class="tweet-inner">
-        <img src="${tweet.profilePic}" class="profile-pic">
-        <div>
-            <p class="handle">${tweet.handle}</p>
-            <p class="tweet-text">${tweet.tweetText}</p>
-            <div class="tweet-details">
-                <span class="tweet-detail">
-                    <i class="fa-regular fa-comment-dots"
-                    data-reply="${tweet.uuid}"
-                    ></i>
-                    ${tweet.replies.length}
-                </span>
-                <span class="tweet-detail">
-                    <i class="fa-solid fa-heart ${likeIconClass}"
-                    data-like="${tweet.uuid}"
-                    ></i>
-                    ${tweet.likes}
-                </span>
-                <span class="tweet-detail">
-                    <i class="fa-solid fa-retweet ${retweetIconClass}"
-                    data-retweet="${tweet.uuid}"
-                    ></i>
-                    ${tweet.retweets}
-                </span>
-                <span class="tweet-detail">
-                    <i class="fa-solid fa-trash" 
-                    data-deletetweet="${tweet.uuid}"
-                    ></i>
-                </span>
+        <div class="tweet">
+            <div class="tweet-inner">
+                <img src="${tweet.profilePic}" class="profile-pic">
+                <div>
+                    <p class="handle">${tweet.handle}</p>
+                    <p class="tweet-text">${tweet.tweetText}</p>
+                    <div class="tweet-details">
+                        <span class="tweet-detail">
+                            <i class="fa-regular fa-comment-dots"
+                            data-reply="${tweet.uuid}"
+                            ></i>
+                            ${tweet.replies.length}
+                        </span>
+                        <span class="tweet-detail">
+                            <i class="fa-solid fa-heart ${likeIconClass}"
+                            data-like="${tweet.uuid}"
+                            ></i>
+                            ${tweet.likes}
+                        </span>
+                        <span class="tweet-detail">
+                            <i class="fa-solid fa-retweet ${retweetIconClass}"
+                            data-retweet="${tweet.uuid}"
+                            ></i>
+                            ${tweet.retweets}
+                        </span>
+                        <span class="tweet-detail">
+                            <i class="fa-solid fa-trash" 
+                            data-deletetweet="${tweet.uuid}"
+                            ></i>
+                        </span>
+                    </div>   
+                </div>            
+            </div>
+            <div class="hidden" id="replies-${tweet.uuid}">
+                ${repliesHtml}
+                <div class="reply-tweet">
+                    <div class="tweet-input-area">
+                        <img src="images/scrimbalogo.png" class="profile-pic">
+                        <textarea id="reply-input" data-textareareply="${tweet.uuid}"></textarea>
+                    </div>
+                    <button class="reply-btn" id="reply-btn" data-btnreply="${tweet.uuid}">Reply</button>
+                </div>
             </div>   
-        </div>            
-    </div>
-    <div class="hidden" id="replies-${tweet.uuid}">
-        ${repliesHtml}
-    </div>   
-</div>
-`
+        </div>
+        `
    })
    return feedHtml 
 }
